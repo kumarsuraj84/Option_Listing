@@ -1,0 +1,114 @@
+{
+  "supply": [
+    {
+      "option": "A",
+      "color": "BLACK",
+      "family": "BLACK",
+      "demand_group": "G1",
+      "phase": "PLANNED",
+      "pack_size": 12,
+      "quantity": 200,
+      "rank": 0
+    },
+    {
+      "option": "A",
+      "color": "WHITE",
+      "family": "WHITE",
+      "demand_group": "G1",
+      "phase": "PLANNED",
+      "pack_size": 12,
+      "quantity": 200,
+      "rank": 1
+    },
+    {
+      "option": "B",
+      "color": "BLACK",
+      "family": "BLACK",
+      "demand_group": "G1",
+      "phase": "PLANNED",
+      "pack_size": 12,
+      "quantity": 180,
+      "rank": 0
+    },
+    {
+      "option": "B",
+      "color": "WHITE",
+      "family": "WHITE",
+      "demand_group": "G1",
+      "phase": "PLANNED",
+      "pack_size": 12,
+      "quantity": 180,
+      "rank": 1
+    },
+    {
+      "option": "C",
+      "color": "BLACK",
+      "family": "BLACK",
+      "demand_group": "G1",
+      "phase": "PLANNED",
+      "pack_size": 12,
+      "quantity": 20,
+      "rank": 0
+    },
+    {
+      "option": "C",
+      "color": "WHITE",
+      "family": "WHITE",
+      "demand_group": "G1",
+      "phase": "PLANNED",
+      "pack_size": 12,
+      "quantity": 20,
+      "rank": 1
+    }
+  ],
+  "demand": [
+    {
+      "store": "S0",
+      "demand_group": "G1",
+      "quantity": 36
+    },
+    {
+      "store": "S1",
+      "demand_group": "G1",
+      "quantity": 36
+    }
+  ],
+  "targets": [
+    {
+      "store": "S0",
+      "option": "A",
+      "grid_sets": 1,
+      "priority": 2
+    },
+    {
+      "store": "S0",
+      "option": "B",
+      "grid_sets": 1,
+      "priority": 2
+    },
+    {
+      "store": "S0",
+      "option": "C",
+      "grid_sets": 1,
+      "priority": 2
+    },
+    {
+      "store": "S1",
+      "option": "A",
+      "grid_sets": 1,
+      "priority": 1
+    },
+    {
+      "store": "S1",
+      "option": "B",
+      "grid_sets": 1,
+      "priority": 1
+    },
+    {
+      "store": "S1",
+      "option": "C",
+      "grid_sets": 1,
+      "priority": 1
+    }
+  ]
+}

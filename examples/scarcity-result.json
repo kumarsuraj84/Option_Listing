@@ -1,0 +1,218 @@
+{
+  "allocations": [
+    {
+      "store": "S0",
+      "option": "C",
+      "color": "BLACK",
+      "family": "BLACK",
+      "demand_group": "G1",
+      "phase": "PLANNED",
+      "minimum_quantity": 12,
+      "assigned_quantity": 12,
+      "list_tag": "YES",
+      "stage": "coverage",
+      "initial_dispatch_quantity": null,
+      "store_reserve_quantity": null
+    },
+    {
+      "store": "S1",
+      "option": "C",
+      "color": "WHITE",
+      "family": "WHITE",
+      "demand_group": "G1",
+      "phase": "PLANNED",
+      "minimum_quantity": 12,
+      "assigned_quantity": 12,
+      "list_tag": "YES",
+      "stage": "coverage",
+      "initial_dispatch_quantity": null,
+      "store_reserve_quantity": null
+    },
+    {
+      "store": "S0",
+      "option": "B",
+      "color": "BLACK",
+      "family": "BLACK",
+      "demand_group": "G1",
+      "phase": "PLANNED",
+      "minimum_quantity": 12,
+      "assigned_quantity": 12,
+      "list_tag": "YES",
+      "stage": "coverage",
+      "initial_dispatch_quantity": null,
+      "store_reserve_quantity": null
+    },
+    {
+      "store": "S1",
+      "option": "B",
+      "color": "BLACK",
+      "family": "BLACK",
+      "demand_group": "G1",
+      "phase": "PLANNED",
+      "minimum_quantity": 12,
+      "assigned_quantity": 12,
+      "list_tag": "YES",
+      "stage": "coverage",
+      "initial_dispatch_quantity": null,
+      "store_reserve_quantity": null
+    },
+    {
+      "store": "S0",
+      "option": "A",
+      "color": "BLACK",
+      "family": "BLACK",
+      "demand_group": "G1",
+      "phase": "PLANNED",
+      "minimum_quantity": 12,
+      "assigned_quantity": 12,
+      "list_tag": "YES",
+      "stage": "coverage",
+      "initial_dispatch_quantity": null,
+      "store_reserve_quantity": null
+    },
+    {
+      "store": "S1",
+      "option": "A",
+      "color": "BLACK",
+      "family": "BLACK",
+      "demand_group": "G1",
+      "phase": "PLANNED",
+      "minimum_quantity": 12,
+      "assigned_quantity": 12,
+      "list_tag": "YES",
+      "stage": "coverage",
+      "initial_dispatch_quantity": null,
+      "store_reserve_quantity": null
+    }
+  ],
+  "coverage": [
+    {
+      "store": "S0",
+      "option": "A",
+      "status": "COVERED",
+      "reason": "At least one full color allocation in one family",
+      "minimum_quantity": 12,
+      "family_count": 1
+    },
+    {
+      "store": "S0",
+      "option": "B",
+      "status": "COVERED",
+      "reason": "At least one full color allocation in one family",
+      "minimum_quantity": 12,
+      "family_count": 1
+    },
+    {
+      "store": "S0",
+      "option": "C",
+      "status": "COVERED",
+      "reason": "At least one full color allocation in one family",
+      "minimum_quantity": 12,
+      "family_count": 1
+    },
+    {
+      "store": "S1",
+      "option": "A",
+      "status": "COVERED",
+      "reason": "At least one full color allocation in one family",
+      "minimum_quantity": 12,
+      "family_count": 1
+    },
+    {
+      "store": "S1",
+      "option": "B",
+      "status": "COVERED",
+      "reason": "At least one full color allocation in one family",
+      "minimum_quantity": 12,
+      "family_count": 1
+    },
+    {
+      "store": "S1",
+      "option": "C",
+      "status": "COVERED",
+      "reason": "At least one full color allocation in one family",
+      "minimum_quantity": 12,
+      "family_count": 1
+    }
+  ],
+  "pools": [
+    {
+      "option": "A",
+      "color": "BLACK",
+      "received": 200,
+      "eligible_pool": 120,
+      "held_back": 80,
+      "assigned": 24,
+      "unassigned": 96
+    },
+    {
+      "option": "A",
+      "color": "WHITE",
+      "received": 200,
+      "eligible_pool": 120,
+      "held_back": 80,
+      "assigned": 0,
+      "unassigned": 120
+    },
+    {
+      "option": "B",
+      "color": "BLACK",
+      "received": 180,
+      "eligible_pool": 108,
+      "held_back": 72,
+      "assigned": 24,
+      "unassigned": 84
+    },
+    {
+      "option": "B",
+      "color": "WHITE",
+      "received": 180,
+      "eligible_pool": 108,
+      "held_back": 72,
+      "assigned": 0,
+      "unassigned": 108
+    },
+    {
+      "option": "C",
+      "color": "BLACK",
+      "received": 20,
+      "eligible_pool": 12,
+      "held_back": 8,
+      "assigned": 12,
+      "unassigned": 0
+    },
+    {
+      "option": "C",
+      "color": "WHITE",
+      "received": 20,
+      "eligible_pool": 12,
+      "held_back": 8,
+      "assigned": 12,
+      "unassigned": 0
+    }
+  ],
+  "demand": [
+    {
+      "store": "S0",
+      "demand_group": "G1",
+      "opening": 36,
+      "assigned": 36,
+      "remaining": 0
+    },
+    {
+      "store": "S1",
+      "demand_group": "G1",
+      "opening": 36,
+      "assigned": 36,
+      "remaining": 0
+    }
+  ],
+  "summary": {
+    "assigned_units": 72,
+    "covered_targets": 6,
+    "uncovered_targets": 0,
+    "existing_targets": 0,
+    "split_status": "UNSPECIFIED",
+    "reconciliation": "PASS"
+  }
+}

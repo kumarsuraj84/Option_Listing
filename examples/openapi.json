@@ -1,0 +1,535 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Option Listing Preview API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/imports/validate": {
+      "post": {
+        "summary": "Import Csv",
+        "operationId": "import_csv_imports_validate_post",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CsvInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/runs": {
+      "post": {
+        "summary": "Preview",
+        "operationId": "preview_runs_post",
+        "parameters": [
+          {
+            "name": "idempotency-key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120,
+              "title": "Idempotency-Key"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AllocationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/runs/{run_id}": {
+      "get": {
+        "summary": "Get Run",
+        "operationId": "get_run_runs__run_id__get",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AllocationRequest": {
+        "properties": {
+          "supply": {
+            "items": {
+              "$ref": "#/components/schemas/Supply"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Supply"
+          },
+          "demand": {
+            "items": {
+              "$ref": "#/components/schemas/Demand"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Demand"
+          },
+          "targets": {
+            "items": {
+              "$ref": "#/components/schemas/Target"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Targets"
+          },
+          "existing_listings": {
+            "items": {
+              "$ref": "#/components/schemas/ExistingListing"
+            },
+            "type": "array",
+            "title": "Existing Listings"
+          },
+          "policy": {
+            "$ref": "#/components/schemas/Policy"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "supply",
+          "demand",
+          "targets"
+        ],
+        "title": "AllocationRequest"
+      },
+      "CsvInput": {
+        "properties": {
+          "supply_csv": {
+            "type": "string",
+            "title": "Supply Csv"
+          },
+          "demand_csv": {
+            "type": "string",
+            "title": "Demand Csv"
+          },
+          "targets_csv": {
+            "type": "string",
+            "title": "Targets Csv"
+          },
+          "policy": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Policy",
+            "default": {}
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "supply_csv",
+          "demand_csv",
+          "targets_csv"
+        ],
+        "title": "CsvInput"
+      },
+      "Demand": {
+        "properties": {
+          "store": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Store"
+          },
+          "demand_group": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Demand Group"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Quantity"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "store",
+          "demand_group",
+          "quantity"
+        ],
+        "title": "Demand"
+      },
+      "ExistingListing": {
+        "properties": {
+          "store": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Store"
+          },
+          "option": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Option"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "store",
+          "option"
+        ],
+        "title": "ExistingListing"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Policy": {
+        "properties": {
+          "planned_holdback": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "string",
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+              }
+            ],
+            "title": "Planned Holdback",
+            "default": "0.40"
+          },
+          "ready_holdback": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "string",
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+              }
+            ],
+            "title": "Ready Holdback",
+            "default": "0"
+          },
+          "initial_dispatch_fraction": {
+            "anyOf": [
+              {
+                "type": "number",
+                "maximum": 1.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "string",
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Initial Dispatch Fraction"
+          },
+          "allow_extra_families": {
+            "type": "boolean",
+            "title": "Allow Extra Families",
+            "default": false
+          },
+          "allow_extra_colors_same_family": {
+            "type": "boolean",
+            "title": "Allow Extra Colors Same Family",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "Policy"
+      },
+      "Supply": {
+        "properties": {
+          "option": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Option"
+          },
+          "color": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Color"
+          },
+          "family": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Family"
+          },
+          "demand_group": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Demand Group"
+          },
+          "phase": {
+            "type": "string",
+            "enum": [
+              "PLANNED",
+              "READY"
+            ],
+            "title": "Phase"
+          },
+          "pack_size": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Pack Size"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Quantity"
+          },
+          "rank": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Rank",
+            "default": 0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "option",
+          "color",
+          "family",
+          "demand_group",
+          "phase",
+          "pack_size",
+          "quantity"
+        ],
+        "title": "Supply"
+      },
+      "Target": {
+        "properties": {
+          "store": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Store"
+          },
+          "option": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Option"
+          },
+          "grid_sets": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Grid Sets"
+          },
+          "priority": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Priority",
+            "default": 0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "store",
+          "option",
+          "grid_sets"
+        ],
+        "title": "Target"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
